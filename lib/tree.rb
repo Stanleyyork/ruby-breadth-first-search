@@ -32,8 +32,62 @@ class Tree
   # Searches through all nodes of the tree, moving outward from the root.
   # Looks for first node with key equal to the +target_key+ param.
   # Returns nil if no such node is found.
+  # def breadth_first_search(target_key)
+  #   if target_key == @key
+  #     return @key
+  #   else
+  #     @children.each do |c|
+  #       if c.key == target_key
+  #         return c
+  #       end
+  #     end
+  #     @children.each do |c|
+  #       c.children.each do |cc|
+  #         if cc.key == target_key
+  #           return cc
+  #         end
+  #       end
+  #     end
+  #     return nil
+  #   end
+  # end
+
+  # def breadth_first_search_recursive(tree, target_key)
+  #   if target_key == tree.key
+  #     return tree.key
+  #   else
+  #     tree.children.each do |c|
+  #       breadth_first_search_recursive(c, target_key)
+  #     end
+  #   end
+  #   # return nil?
+  # end
+
+  # def breadth_first_search(target_key)
+  #   q = [self]
+  #   q.each do |node|
+  #     if target_key == node.key
+  #       return node
+  #     else
+  #       q += node.children
+  #     end
+  #   end
+  #   return nil
+  # end
+
   def breadth_first_search(target_key)
-    nil
+    q = [self]
+    until q.empty?
+      q.each do |node|
+        if target_key == node.key
+          return node
+        else
+          q += node.children
+          q.shift
+        end
+      end
+    end
+    return nil
   end
 
 end
